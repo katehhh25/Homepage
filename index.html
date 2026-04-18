@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALTs Law</title>
+<meta name="description" content="ALTs Law — an AI-native legal firm.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans:wght@400;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FBF9F1;
+    --ink: #161616;
+    --ink-soft: #3A3A3A;
+    --muted: #6E6B65;
+    --rule: #D9D4C6;
+    --accent: #10B981;
+    --accent-deep: #047857;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.55;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  .container {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 48px;
+    width: 100%;
+  }
+
+  /* ============ HEADER ============ */
+  header.site {
+    padding: 28px 0 0 0;
+    position: relative;
+    z-index: 20;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .wordmark {
+    font-family: 'Quattrocento Sans', sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+  }
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    transition: color 0.15s ease;
+  }
+  .nav-links a:hover { color: var(--accent-deep); }
+
+  /* ============ HERO ============ */
+  main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 40px 0 80px 0;
+  }
+
+  section.hero {
+    width: 100%;
+    position: relative;
+  }
+
+  .tag {
+    display: inline-block;
+    font-size: 14.5px;
+    font-weight: 500;
+    font-style: italic;
+    letter-spacing: 0.005em;
+    color: #555555;
+    margin-bottom: 32px;
+  }
+
+  h1 {
+    font-family: 'Source Serif 4', serif;
+    font-weight: 500;
+    font-size: clamp(38px, 5.5vw, 64px);
+    line-height: 1.08;
+    letter-spacing: -0.022em;
+    color: var(--ink);
+    max-width: 940px;
+    margin-bottom: 44px;
+  }
+  h1 em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--accent-deep);
+  }
+
+  .cta-row {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  button.btn {
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 22px;
+    font-size: 14.5px;
+    font-weight: 600;
+    border-radius: 999px;
+    transition: all 0.18s ease;
+  }
+
+  .btn-primary {
+    background: var(--ink);
+    color: var(--bg);
+  }
+  .btn-primary:hover { background: var(--accent-deep); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--ink);
+  }
+  .btn-secondary:hover {
+    background: var(--ink);
+    color: var(--bg);
+  }
+
+  .btn .arrow { display: inline-block; transition: transform 0.18s ease; }
+  .btn:hover .arrow { transform: translateX(3px); }
+
+  /* Decorative motif */
+  .hero-motif {
+    position: absolute;
+    right: -40px;
+    top: -40px;
+    width: 460px;
+    height: 460px;
+    opacity: 0.55;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero-content { position: relative; z-index: 1; }
+
+  /* ============ FOOTER ============ */
+  footer.site {
+    padding: 32px 0 40px 0;
+    border-top: 1px solid var(--rule);
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  footer.site .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  footer.site .wordmark {
+    font-size: 22px;
+    color: var(--accent);
+  }
+  footer.site a { color: var(--muted); transition: color 0.15s; }
+  footer.site a:hover { color: var(--accent-deep); }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 760px) {
+    .container { padding: 0 24px; }
+    main { padding: 20px 0 60px 0; }
+    .hero-motif { width: 260px; height: 260px; right: -60px; top: 0; }
+    h1 { font-size: 38px; }
+    .cta-row { flex-direction: column; align-items: stretch; }
+    .btn { justify-content: center; }
+  }
+
+  /* ============ MODAL ============ */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(22, 22, 22, 0.55);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    padding: 24px;
+    animation: fadeIn 0.2s ease;
+  }
+  .modal-overlay.open { display: flex; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .modal {
+    background: var(--bg);
+    border-radius: 14px;
+    max-width: 520px;
+    width: 100%;
+    padding: 48px 48px 44px 48px;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    animation: slideUp 0.25s ease;
+  }
+
+  @keyframes slideUp {
+    from { transform: translateY(16px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-deep);
+    transition: background 0.15s;
+  }
+  .modal-close:hover { background: rgba(16, 185, 129, 0.1); }
+  .modal-close svg { width: 16px; height: 16px; }
+
+  .modal h2 {
+    font-family: 'Quattrocento Sans', sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  .modal p {
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+
+  .modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .modal input[type="email"] {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: inherit;
+    background: white;
+    color: var(--ink);
+    transition: border-color 0.15s;
+  }
+  .modal input[type="email"]:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.12);
+  }
+
+  .modal button[type="submit"] {
+    align-self: flex-start;
+    padding: 12px 26px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: white;
+    background: var(--accent);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.15s;
+  }
+  .modal button[type="submit"]:hover { background: var(--accent-deep); }
+
+  .modal .thanks {
+    display: none;
+  }
+  .modal.success .form-wrap { display: none; }
+  .modal.success .thanks { display: block; }
+  .modal .thanks p { color: var(--ink-soft); margin-bottom: 0; }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="container">
+    <nav>
+      <a href="#" class="wordmark">ALTs Law</a>
+
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <svg class="hero-motif" viewBox="0 0 460 460" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="230" cy="230" r="220" stroke="#10B981" stroke-width="1" fill="none" opacity="0.16"/>
+      <circle cx="230" cy="230" r="150" stroke="#10B981" stroke-width="1" fill="none" opacity="0.26"/>
+      <circle cx="230" cy="230" r="85" stroke="#10B981" stroke-width="1" fill="none" opacity="0.42"/>
+      <circle cx="230" cy="230" r="8" fill="#10B981" opacity="0.8"/>
+      <circle cx="380" cy="190" r="4" fill="#10B981" opacity="0.7"/>
+      <circle cx="90" cy="265" r="4" fill="#10B981" opacity="0.6"/>
+      <circle cx="290" cy="375" r="3.5" fill="#10B981" opacity="0.55"/>
+      <circle cx="150" cy="115" r="3" fill="#10B981" opacity="0.5"/>
+      <circle cx="340" cy="320" r="2.5" fill="#10B981" opacity="0.45"/>
+      <circle cx="130" cy="360" r="2.5" fill="#10B981" opacity="0.4"/>
+      <circle cx="415" cy="285" r="2" fill="#10B981" opacity="0.4"/>
+      <circle cx="45" cy="165" r="2" fill="#10B981" opacity="0.35"/>
+    </svg>
+    <div class="container">
+      <div class="hero-content">
+        <div class="tag">An AI-native law firm for life sciences and healthcare</div>
+        <h1>Senior legal judgment, <em>productised</em> for life sciences and healthcare.</h1>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://calendar.app.google/gHT1BnvnUkxe8dPR7">Book a pilot briefing <span class="arrow">&rarr;</span></a>
+          <button class="btn btn-secondary" type="button" onclick="openModal()">Get updates <span class="arrow">&rarr;</span></button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="container">
+    <div class="row">
+      <div class="wordmark">ALTs Law</div>
+      <div><a href="mailto:kate@alts.law">kate@alts.law</a></div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ============ MODAL ============ -->
+<div class="modal-overlay" id="updatesModal" onclick="handleOverlayClick(event)">
+  <div class="modal" id="updatesModalInner">
+    <button class="modal-close" type="button" onclick="closeModal()" aria-label="Close">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M2 2 L14 14 M14 2 L2 14"/>
+      </svg>
+    </button>
+    <div class="form-wrap">
+      <h2>Get updates</h2>
+      <p>Occasional notes on what we're building and who we're working with.</p>
+      <form onsubmit="handleSubmit(event)" action="https://formspree.io/f/mkokrlzy" method="POST">
+        <input type="email" name="email" placeholder="Email address" required autocomplete="email">
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+    <div class="thanks">
+      <h2>Thank you</h2>
+      <p>You'll hear from us soon.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById("updatesModal");
+  const modalInner = document.getElementById("updatesModalInner");
+
+  function openModal() {
+    modal.classList.add("open");
+    modalInner.classList.remove("success");
+    document.body.style.overflow = "hidden";
+    setTimeout(() => {
+      const input = modal.querySelector('input[type="email"]');
+      if (input) input.focus();
+    }, 200);
+  }
+
+  function closeModal() {
+    modal.classList.remove("open");
+    document.body.style.overflow = "";
+    // Reset form state after close animation
+    setTimeout(() => {
+      modalInner.classList.remove("success");
+      const form = modal.querySelector("form");
+      if (form) form.reset();
+    }, 250);
+  }
+
+  function handleOverlayClick(event) {
+    if (event.target === modal) closeModal();
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const form = event.target;
+    const data = new FormData(form);
+    fetch(form.action, {
+      method: "POST",
+      body: data,
+      headers: { Accept: "application/json" }
+    }).then(() => {
+      modalInner.classList.add("success");
+    }).catch(() => {
+      modalInner.classList.add("success");
+    });
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("open")) closeModal();
+  });
+</script>
+
+</body>
+</html>
