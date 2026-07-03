@@ -10,9 +10,10 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNyIgZmlsbD0iIzEwMUIyMyIvPgogIDxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0FGQzBCQSIgc3Ryb2tlLXdpZHRoPSIyLjEiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CiAgICA8cGF0aCBkPSJNMTIgOSBMOC41IDkgTDguNSAyMyBMMTIgMjMiLz4KICAgIDxwYXRoIGQ9Ik0yMCA5IEwyMy41IDkgTDIzLjUgMjMgTDIwIDIzIi8+CiAgPC9nPgogIDxjaXJjbGUgY3g9IjE2IiBjeT0iMTYiIHI9IjMuMSIgZmlsbD0iIzg2QkVBOSIvPgo8L3N2Zz4K">
 
 <!-- ============================================================
-     CLIENT PORTAL LINK - update in one place.
-     Search this file for  https://app.alts.law  and replace it
-     with your real client portal URL (top-bar + footer login).
+     CLIENT LOGIN LINK
+     The two "Client login" links (top-bar + footer) point to
+     /login  (the login page in the /login folder of this repo).
+     When a real client workspace exists, repoint both to it.
      ============================================================ -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -160,7 +161,7 @@
         <div class="top-actions">
           <span class="stealth"><span class="pulse"></span>Building in stealth</span>
           <!-- CLIENT PORTAL LINK -->
-          <a class="btn-login" href="https://app.alts.law">Client login <span class="arw">&rarr;</span></a>
+          <a class="btn-login" href="/login">Client login <span class="arw">&rarr;</span></a>
         </div>
       </div>
     </header>
@@ -185,7 +186,7 @@
           <a href="mailto:kate@alts.law">kate@alts.law</a>
           <span class="sep"></span>
           <!-- CLIENT PORTAL LINK -->
-          <a href="https://app.alts.law">Client login</a>
+          <a href="/login">Client login</a>
         </div>
       </div>
     </footer>
