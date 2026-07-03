@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client login · alts.law</title>
+<meta name="description" content="Secure client login for the alts.law workspace.">
+<meta name="robots" content="noindex">
+
+<!-- Favicon: same bracketed-dot mark as the homepage, so the tab stays consistent -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNyIgZmlsbD0iIzEwMUIyMyIvPgogIDxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0FGQzBCQSIgc3Ryb2tlLXdpZHRoPSIyLjEiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CiAgICA8cGF0aCBkPSJNMTIgOSBMOC41IDkgTDguNSAyMyBMMTIgMjMiLz4KICAgIDxwYXRoIGQ9Ik0yMCA5IEwyMy41IDkgTDIzLjUgMjMgTDIwIDIzIi8+CiAgPC9nPgogIDxjaXJjbGUgY3g9IjE2IiBjeT0iMTYiIHI9IjMuMSIgZmlsbD0iIzg2QkVBOSIvPgo8L3N2Zz4K">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #F2F0EA;
+    --surface: #FCFCFB;
+    --border: #EAE7DF;
+    --text: #1f2329;
+    --text-2: #6f6757;
+    --text-3: #9a9080;
+    --teal: #0E8089;
+    --forest: #3D6B45;
+    --ink-btn: #0F2A2B;
+    --ink-btn-hover: #1a4a4c;
+    --font: 'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  .login-box {
+    background: var(--surface);
+    border: 1px solid #e7e4dd;
+    border-radius: 4px;
+    padding: 48px 40px;
+    width: 400px;
+    max-width: 100%;
+    box-shadow: 0 1px 3px rgba(0,0,0,.08);
+    opacity: 0;
+    transform: translateY(6px);
+    animation: rise .4s ease forwards;
+  }
+
+  @keyframes rise { to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    .login-box { animation: none; opacity: 1; transform: none; }
+  }
+
+  .login-logo {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -0.3px;
+    color: var(--ink-btn);
+    margin-bottom: 6px;
+  }
+  .login-logo .bracket { font-weight: 400; color: var(--text-3); }
+  .login-logo .dot {
+    width: 7px; height: 7px; background: var(--forest);
+    border-radius: 50%; margin: 0 5px; display: inline-block;
+  }
+  .login-logo .wordmark { margin-left: 8px; }
+
+  .login-tagline {
+    font-size: 13px;
+    color: var(--text-2);
+    margin-bottom: 32px;
+    line-height: 1.5;
+  }
+
+  .login-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .login-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-family: var(--font);
+    font-size: 14px;
+    color: var(--text);
+    background: var(--bg);
+    margin-bottom: 16px;
+    transition: border-color .15s;
+  }
+  .login-input:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(14,128,137,.12); }
+
+  .pw-field { position: relative; }
+  .pw-toggle {
+    position: absolute; right: 10px; top: 9px;
+    background: none; border: none; cursor: pointer;
+    font-family: var(--font); font-size: 11px; font-weight: 600;
+    letter-spacing: .5px; text-transform: uppercase;
+    color: var(--text-3); padding: 2px 4px;
+  }
+  .pw-toggle:hover { color: var(--text-2); }
+  .pw-toggle:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; border-radius: 3px; }
+
+  .login-btn {
+    width: 100%;
+    padding: 12px;
+    background: var(--ink-btn);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-family: var(--font);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background 0.15s;
+  }
+  .login-btn:hover { background: var(--ink-btn-hover); }
+  .login-btn:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+
+  .login-forgot {
+    text-align: center;
+    margin-top: 16px;
+  }
+  .login-forgot a {
+    font-size: 12.5px;
+    color: var(--text-2);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color .15s;
+  }
+  .login-forgot a:hover { border-bottom-color: var(--text-3); }
+
+  .login-pilot {
+    font-size: 11px;
+    color: var(--text-3);
+    text-align: center;
+    margin-top: 24px;
+    letter-spacing: 0.5px;
+  }
+
+  @media (max-width: 440px) {
+    .login-box { padding: 40px 26px; }
+  }
+</style>
+</head>
+<body>
+
+  <main class="login-box">
+    <div class="login-logo">
+      <span class="bracket">[</span><span class="dot"></span><span class="bracket">]</span><span class="wordmark">alts.law</span>
+    </div>
+    <p class="login-tagline">Legal judgment that thinks like a GC.</p>
+
+    <form id="loginForm">
+      <label class="login-label" for="email">Email</label>
+      <input class="login-input" id="email" name="email" type="email"
+             autocomplete="email" autocapitalize="none" spellcheck="false"
+             placeholder="you@yourfirm.com">
+
+      <label class="login-label" for="password">Password</label>
+      <div class="pw-field">
+        <input class="login-input" id="password" name="password" type="password"
+               autocomplete="current-password" placeholder="••••••••••">
+        <button type="button" class="pw-toggle" id="pwToggle" aria-label="Show password">Show</button>
+      </div>
+
+      <button class="login-btn" type="submit">Sign in to workspace</button>
+    </form>
+
+    <div class="login-forgot">
+      <a href="mailto:kate@alts.law?subject=Client%20portal%20access">Trouble signing in?</a>
+    </div>
+
+    <div class="login-pilot">Confidential · alts.law</div>
+  </main>
+
+<script>
+  /* ============================================================
+     Sign-in is intentionally inert for now.
+     No client workspace exists yet and no one holds credentials,
+     so the button does nothing when clicked. The page just
+     presents the login screen. When a real workspace and auth
+     provider are ready, wire the sign-in below.
+     ============================================================ */
+  document.getElementById('loginForm').addEventListener('submit', function (e) {
+    e.preventDefault();   // stops the page reloading; nothing else happens
+  });
+
+  var passEl = document.getElementById('password');
+  var pwToggle = document.getElementById('pwToggle');
+  pwToggle.addEventListener('click', function () {
+    var show = passEl.type === 'password';
+    passEl.type = show ? 'text' : 'password';
+    pwToggle.textContent = show ? 'Hide' : 'Show';
+    pwToggle.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+    passEl.focus();
+  });
+</script>
+</body>
+</html>
